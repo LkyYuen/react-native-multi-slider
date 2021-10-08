@@ -659,6 +659,17 @@ export default class MultiSlider extends React.Component {
 
     return (
       <View testID={this.props.testID}>
+        {this.props.imageBackgroundSource && (
+          <ImageBackground
+            source={this.props.imageBackgroundSource}
+            style={[{ width: '100%', height: '100%' }, containerStyle]}
+          >
+            {body}
+          </ImageBackground>
+        )}
+        {!this.props.imageBackgroundSource && (
+          <View style={containerStyle}>{body}</View>
+        )}
         {this.props.enableLabel && (
           <Label
             oneMarkerValue={this.state.valueOne}
@@ -670,17 +681,6 @@ export default class MultiSlider extends React.Component {
             oneMarkerPressed={this.state.onePressed}
             twoMarkerPressed={this.state.twoPressed}
           />
-        )}
-        {this.props.imageBackgroundSource && (
-          <ImageBackground
-            source={this.props.imageBackgroundSource}
-            style={[{ width: '100%', height: '100%' }, containerStyle]}
-          >
-            {body}
-          </ImageBackground>
-        )}
-        {!this.props.imageBackgroundSource && (
-          <View style={containerStyle}>{body}</View>
         )}
       </View>
     );
